@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Warrior Vs Monster</title>
+  <style>
+    body {
+    background: #282c34; /* Mudança da cor de fundo para um cinza escuro */
+    color: white;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    overflow: hidden;
+  }
+    #hud {
+      display: none;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 10;
+    }
+
+    #hud div {
+      margin-bottom: 5px;
+    }
+
+    #hud button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      color: white;
+      background-color: #6200ea;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    #hud button:hover {
+      background-color: #3700b3;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    #hud button:active {
+      background-color: #03dac5;
+    }
+
+    #menu h1 {
+    color: white; /* Cor do texto */
+    font-size: 32px; /* Tamanho do texto */
+    font-family: 'Arial', sans-serif; /* Fonte do texto */
+    margin-bottom: 20px; /* Espaço entre o título e os botões */
+    text-align: center; /* Centraliza o texto */
+    }
+
+    #menu, #pause-menu, #game-over-menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    }
+
+    #menu button, #pause-menu button, #game-over-menu button {
+    display: block;
+    margin: 20px auto; /* Aumentar a margem para melhor espaçamento */
+    padding: 15px 30px;
+    font-size: 20px; /* Aumentar o tamanho da fonte para melhor legibilidade */
+    color: white;
+    background-color: #6200ea;
+    border: none;
+    border-radius: 8px; /* Bordas mais arredondadas */
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra mais definida */
+    transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+    #menu button:hover, #pause-menu button:hover, #game-over-menu button:hover {
+      background-color: #3700b3;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    #menu button:active, #pause-menu button:active, #game-over-menu button:active {
+      background-color: #03dac5;
+    }
+
+    #menu, #pause-menu, #game-over-menu {
+      display: none; /* Initially hidden */
+    }
+
+  </style>
+</head>
+<body>
+  <div id="hud">
+    <div id="life">Life: 100</div> 
+    <div id="score">Score: 0</div> 
+    <button id="pause-game">Pause</button>
+  </div>
+  <div id="menu">
+    <h1>Warrior Vs Monster</h1>
+    <button id="start-game">Start Game</button>
+    <button id="settings">Settings</button>
+    <button id="exit">Exit</button>
+  </div>
+  <div id="pause-menu">
+    <button id="resume-game">Resume Game</button>
+    <button id="main-menu">Main Menu</button>
+  </div>
+  <div id="game-over-menu">
+    <h1>Game Over</h1>
+    <button id="restart-game">Restart Game</button>
+    <button id="main-menu">Main Menu</button>
+  </div>
+
+  <script>
+    document.getElementById('start-game').addEventListener('click', function() {
+      document.getElementById('hud').style.display = 'block'; // Mostrar HUD quando o jogo começa
+      document.getElementById('menu').style.display = 'none'; // Ocultar menu
+    });
+
+    document.getElementById('exit').addEventListener('click', function() {
+      document.getElementById('hud').style.display = 'none'; // Ocultar HUD quando sai do jogo
+      document.getElementById('menu').style.display = 'flex'; // Mostrar menu
+    });
+
+    document.getElementById('main-menu').addEventListener('click', function() {
+    document.getElementById('hud').style.display = 'none'; // Ocultar HUD
+    document.getElementById('menu').style.display = 'flex'; // Mostrar menu principal
+    document.getElementById('pause-menu').style.display = 'none'; // Ocultar menu de pausa
+    });
+
+  </script>
+
+  <canvas></canvas>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/data/collisions.js"></script>
+  <script src="js/classes/CollisionBlock.js"></script>
+  <script src="js/classes/Sprite.js"></script>
+  <script src="js/classes/Player.js"></script>
+  <script src="js/eventListeners.js"></script>
+  <script src="js/classes/Enemy.js"></script>
+  <script src="js/classes/PatrollingEnemy.js"></script>
+  <script src="js/classes/Item.js"></script>
+  <script src="js/classes/Particle.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>
